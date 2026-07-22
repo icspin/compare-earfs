@@ -1,0 +1,4 @@
+# Runtime state written by bookmark_bridge.py
+sync_state.json
+*.bridge-backup-*
+__pycache__/
