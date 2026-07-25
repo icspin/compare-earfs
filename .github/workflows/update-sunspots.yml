@@ -1,0 +1,32 @@
+name: Update sunspots
+# Weekly refresh of the baked-in NOAA sunspot data (and rotation calibration)
+# in index.html. Pushing to main redeploys GitHub Pages automatically.
+on:
+  schedule:
+    - cron: '17 6 * * 1'   # Mondays 06:17 UTC
+  workflow_dispatch: {}     # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch NOAA data and rewrite index.html
+        run: node tools/update-sunspots.mjs
+      - name: Commit and push if the sun changed
+        run: |
+          if git diff --quiet; then
+            echo "No change - skipping commit."
+          else
+            git config user.name "sunspot-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add index.html
+            git commit -m "Auto-refresh sunspots from NOAA SWPC"
+            git push
+          fi
