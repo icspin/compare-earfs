@@ -65,7 +65,9 @@ and 'git pull --rebase' before pushing.
   middle-click-drag shuttle (`shuttleHold`, quadratic, 24 h/s max).
 - **Ephemeris**: `sunPos` (simple solar), `moonPos` = principal Meeus ch.47 terms
   (~0.05 deg + true distance `distKm`) — accurate enough that eclipses genuinely
-  render from path sites. Sun rotation: Carrington synodic 27.2753 d, calibrated
+  render from path sites. Moon ORIENTATION = full IAU/WGCCRE model (`moonIAU`,
+  NAIF pck00010 constants): true pole + prime meridian W, so face roll AND
+  libration are real. Sun rotation: Carrington synodic 27.2753 d, calibrated
   `SUN_L0`/`SUN_L0_EPOCH` against NOAA.
 - **Eclipses**: `ECL_SOLAR` = 28 central eclipses 2017-2035 as NASA Besselian
   elements; `eclCentral()` = fundamental-plane solution (verified vs published
