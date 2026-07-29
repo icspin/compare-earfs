@@ -20,7 +20,10 @@ commits, and pushes. Every shipped change:
 5. Commit with a descriptive message, push to `main`.
 6. Tell Blake to hard-refresh `.../?v=<build>` (Pages caches hard).
 
-**Current build: 97** (2026-07-26).
+**Current build: check the amber footer in index.html** - the number moves
+without Claude too: the weekly sunspot bot bumps it, and hub-related commits
+may as well. Always read the footer before bumping (+1 from whatever is there),
+and 'git pull --rebase' before pushing.
 
 ## Hard rules
 
