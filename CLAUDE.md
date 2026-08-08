@@ -75,11 +75,20 @@ and 'git pull --rebase' before pushing.
   flat maps (via `projectLine`); umbra disc rides with the clock (`eclNow`).
   `ECL_LUNAR` entries just jump the clock. Picker jumps to GLOBAL greatest;
   other path sites need their local time.
+- **Flat maps**: cover-fit, edge to edge - each panel's canvas buffer tracks
+  the panel's aspect (`p.fitStage()`, called per frame, no-op unless resized);
+  default zoom covers the panel, zoom-out floor shows the whole map. The earth
+  sphere uses polygonOffset so surface lines never z-fight at true scale.
+- **Measure drawer**: opens when points exist; minimize button (`probeMin`)
+  collapses it, the right-edge MEASURE tab reopens; per-point remove buttons
+  in the table rows and sky-card headers.
 - **Sunspots**: REGIONS table between `SUNSPOT-DATA:BEGIN/END` markers +
   `SUNSPOT-CAL` line — **auto-refreshed weekly** by
   `.github/workflows/update-sunspots.yml` running `tools/update-sunspots.mjs`
   (fetches NOAA SWPC, rewrites markers, bumps build, commits as sunspot-bot).
-  Never hand-edit between the markers.
+  Never hand-edit between the markers. The click-the-sun glare popup shows the
+  data's observation date (`SUN_L0_EPOCH`) and warns when the clock is weeks
+  away (the visible face may genuinely be spotless then - never invent spots).
 - **Persistence**: `solterm.state` in localStorage (3s interval + beforeunload),
   restored defensively; `solterm.places` = user-saved locations (survives Reset).
   New user-facing state MUST be added to `collectState`/`restoreState`.
