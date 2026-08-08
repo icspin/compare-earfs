@@ -51,12 +51,21 @@ and 'git pull --rebase' before pushing.
   `clearRect` before every blit or you get smear trails). `AV()` = active view;
   clicking a panel makes it toolbar-controlled.
 - **Camera regimes** (`frameCamera` is the single router; every mode change goes
-  through it): Earth view / Orbit view; `V.anchor` (From:) + `V.track`
-  (`none|sun|moon|earth|both|trio`). Tracking shots derive the camera fresh each
-  frame from knobs `trkR/trkT/trkPhi/trkFov` (drift impossible by construction).
-  `both` = pair shot (minimal enclosing cone of anchor + other two bodies, smooth
-  `pairBack` back-off — never demand something back-off can't change). `trio` =
-  auto-framed group shot. Ground view: `standAt/standFov`, topocentric moon.
+  through it): Earth view / Orbit view; `V.anchor` (From:) + **`V.frame`**
+  (build 112: `{sun,earth,moon}` bool set - the FRAME chips replaced the old
+  Track dropdown/both/trio). Checked set = auto-framed every frame: enclosing
+  center C + PROJECTED-extent fit (off-axis extent sets the angle, toward-
+  camera bodies push back); camera rides the C->From axis at
+  `fit * trkR`, so framing breathes by MOVING, never by fov warping.
+  Knobs `trkR` (multiplier) / `trkT`,`trkPhi` (walk along/around axis) /
+  `trkFov` (telescope) derive the camera fresh per frame - no drift, no
+  ratchets. From = the side you watch from, NOT a guaranteed-foreground body.
+  Earth view: same chips (earth chip hidden - the globe IS the frame);
+  checked bodies stay visible OVER the globe (deliberate semantic change from
+  the pre-112 day-side Track). Migration: saved `track` strings -> frame sets.
+  At true scale from the sun, earth-moon runs edge-on near new/full moon and
+  face-on at quarters - the fill breathing with phase is HONEST geometry,
+  don't "fix" it. Ground view: `standAt/standFov`, topocentric moon.
 - **Zoom**: ONE pipeline `zoomView(V, dy)` — wheel, pinch, and the touch zoom rail
   (`zoomHold`, applied per frame by the main loop; never a private timer/rAF).
   Telescope handoff when the tracked body is small; fov floor derives from the
