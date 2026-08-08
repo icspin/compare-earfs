@@ -61,8 +61,21 @@ and 'git pull --rebase' before pushing.
   (`zoomHold`, applied per frame by the main loop; never a private timer/rAF).
   Telescope handoff when the tracked body is small; fov floor derives from the
   tracked body (stops at ~85% frame fill).
-- **Time**: SPEED / STEP / SET DATE clusters + Jump-to + **Eclipses picker**;
+- **Deck tabs** (build 109): TIME / MAPS / ECLIPSES / POINTS panes
+  (`setDeckTab`, `deckTab` persisted); the clock transport (Pause, dir,
+  speed) is pinned in the tab bar and never hides. Organization only - the
+  panes show/hide, every control keeps its id. Mobile deck rows WRAP (the
+  old hidden-scrollbar side-scroll hid features and is gone); wide `.grp`
+  clusters wrap internally.
+- **Time**: STEP / SET DATE clusters + Jump-to in the TIME pane;
   middle-click-drag shuttle (`shuttleHold`, quadratic, 24 h/s max).
+- **Eclipse replay** (build 108): `eclReplay`/`eclSpan` (path time span from
+  the same Besselian scan that draws the line, +-0.15 h pad; `rate` = one
+  lap ~12 s), applied per frame by the main loop ahead of normal running.
+  `stopReplay()` is called from EVERY manual time control (setRunning, dir,
+  speed, jog, set, jump, shuttle). While replaying, `bc.onmessage` returns
+  early - the replaying window sends, never follows, so a second window
+  follows the loop. Auto chip (`eclAuto`) starts replay on pick.
 - **Ephemeris**: `sunPos` (simple solar), `moonPos` = principal Meeus ch.47 terms
   (~0.05 deg + true distance `distKm`) — accurate enough that eclipses genuinely
   render from path sites. Moon ORIENTATION = full IAU/WGCCRE model (`moonIAU`,
@@ -75,6 +88,17 @@ and 'git pull --rebase' before pushing.
   flat maps (via `projectLine`); umbra disc rides with the clock (`eclNow`).
   `ECL_LUNAR` entries just jump the clock. Picker jumps to GLOBAL greatest;
   other path sites need their local time.
+- **Kaleidoscope** (build 110, PFinky's request): `defs.kaleido` with
+  `kal:1, srcKey:'gleason'` - the disc is COMPOSITED, not projected: the
+  ordinary Gleason scene renders each frame into hidden `kalSrc`, and
+  `drawKaleido` stamps its 0-30 E wedge 12x (6 rotations + 6 mirrors,
+  angles measured from +y like gleason `fwd`). `def.inv/fwd` fold angles
+  the same way, so probing matches the drawing. Not in the measure table
+  (display, not a ruler). Tooltips stay deadpan - no explicit satire, ever.
+- **Tour** (build 111): `TOUR` steps + `tourStep/startTour/tourEnd`; one
+  spotlight div (giant box-shadow) + card. Auto-shows once - localStorage
+  key `solterm.tour`, deliberately separate from app state so it SURVIVES
+  Reset app; header `?` replays. `deckReveal` early-returns while touring.
 - **Flat maps**: cover-fit, edge to edge - each panel's canvas buffer tracks
   the panel's aspect (`p.fitStage()`, called per frame, no-op unless resized);
   default zoom covers the panel, zoom-out floor shows the whole map. The earth
@@ -115,6 +139,16 @@ Hard-won gotchas:
 - Module-scope functions are unreachable from evaluate — test through the DOM.
 - On mobile, panels sit below the fold: `scrollIntoView` before dispatching input.
 - Reuse ONE `--user-data-dir` per script family; temp profiles leak ~1 GB each.
+- The reused profile SESSION-RESTORES the previous run's app pages as ghost
+  tabs with live clocks that bcast on the BroadcastChannel and fight the page
+  under test (symptom: tRate/simT mysteriously overwritten). At startup, list
+  `/json`, keep ONE page target, `/json/close/{id}` the rest.
+- `localStorage.clear()` before navigating away is USELESS - beforeunload
+  persistState re-saves state after the clear. Register
+  `Page.addScriptToEvaluateOnNewDocument` with the clear instead (runs before
+  the app boots); remove it via its identifier to test returning-visitor flows.
+- The working tree is CRLF (git stores LF, autocrlf converts). Python patch
+  scripts must translate `\n` -> `\r\n` in match strings or nothing matches.
 
 ## Data provenance / refresh
 
@@ -130,6 +164,9 @@ Hard-won gotchas:
 - Standing-view true fisheye projection (Stellarium-style) if 120 deg isn't enough.
 - Eclipse durations on labels (needs observer-rotation term in the formula).
 - Blake asked where "Now" went (it's inside Jump-to); offered a dedicated button.
-- Real-phone confirmation of pinch/rail/twist feel.
+- Real-phone confirmation of pinch/rail/twist feel (now also: tabs, tour, replay).
 - Sun sightline arrows (build 30, reverted, "need to think about it").
-- README screenshot is stale.
+- README screenshot is stale (now very stale - tabs changed the deck).
+- City lights fetch from unpkg at RUNTIME (im.src in the lights loader) -
+  contradicts "nothing fetched at runtime"; inline the texture someday.
+- Kaleidoscope is not in the measure table (deliberate; Blake can overrule).
