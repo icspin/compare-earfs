@@ -13,7 +13,10 @@ commits, and pushes. Every shipped change:
 1. Edit `index.html` (for multi-part edits, write a Python patch script with
    exact-match asserts rather than hand-editing — heredocs with quotes are fragile
    in this shell).
-2. Bump the amber **`build N`** in the footer by exactly +1.
+2. Bump the amber **`build N`** in the footer by exactly +1, AND add a
+   matching one-line entry at the top of the LOG array in the footer hub
+   snippet (markers `SOLTERM-LOG:BEGIN/END`) - the other-tools popup
+   renders it as the public build log.
 3. Validate: extract the `<script type="module">` body to a file, `node --check` it.
 4. **Verify on desktop AND mobile (390px viewport) — every change, no exceptions.**
    See "Verification tooling" below.
@@ -62,6 +65,11 @@ and 'git pull --rebase' before pushing.
   ratchets. From = the side you watch from, NOT a guaranteed-foreground body.
   SWIVEL (113): when From IS in the set, drag grabs it (2x2 Jacobian on
   `V._shot`); otherwise ring-walk. True scale defaults ON (113).
+  REFERENCE shots (117): From NOT in the set -> entry starts on the far
+  side (trkT -3, ~18 deg off-axis; 34 deg pushes the reference out of a
+  45 deg frame) so the From body glows in the background beyond the set.
+  Telescope handoff is SOLO-ONLY (117): multi-body sets stop at the trkR
+  floor - narrowing fov onto a spread set's empty centroid shows nothing.
   Earth view: same chips (earth chip hidden - the globe IS the frame);
   checked bodies stay visible OVER the globe (deliberate semantic change from
   the pre-112 day-side Track). Migration: saved `track` strings -> frame sets.
