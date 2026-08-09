@@ -128,12 +128,18 @@ and 'git pull --rebase' before pushing.
 - **Measure drawer**: opens when points exist; minimize button (`probeMin`)
   collapses it, the right-edge MEASURE tab reopens; per-point remove buttons
   in the table rows and sky-card headers.
-- **Model sky** (build 115): per-point strips in the sky cards -
+- **Model ground** (built 115 as 2D strips, REPLACED in 118 by true 3D):
   `modelSky(def, site, body)` computes alt/az/size the map itself predicts
   (sun+moon at `MSKY_H` 4828 km, radius 25.75 km - the SAME constants as
-  `feSizeArcmin`; keep them in sync). Filled discs = model, rings = real.
+  `feSizeArcmin`; keep them in sync). While standing, the World toggle
+  (`V.standWorld`: globe|gleason|bipolar) swaps the territory: ground =
+  live map render on `mgPlane` (map (mx,my) -> ((mx-450)*MG_S,0,(my-450)*MG_S),
+  MG_S 0.02), bodies placed by modelSky, moon lit by the model's sun.
+  Flat worlds hide `earthMesh` ONLY - `earthRoot` contains the moon, hiding
+  it kills the moon (bug found in verification). Finder rings (`moonRet` +
+  `sunRet` twin) work while flat-standing - model bodies are honest specks.
   FE models only (gleason, bipolar) - projections of the globe get no sky.
-  alt = atan(h/D) > 0 always, so the "never sets" line is model-truth.
+  alt = atan(h/D) > 0 always: the model sun never sets, visibly.
 - **Sunspots**: REGIONS table between `SUNSPOT-DATA:BEGIN/END` markers +
   `SUNSPOT-CAL` line — **auto-refreshed weekly** by
   `.github/workflows/update-sunspots.yml` running `tools/update-sunspots.mjs`
