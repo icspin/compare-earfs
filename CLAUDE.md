@@ -153,6 +153,15 @@ and 'git pull --rebase' before pushing.
   and points; `standAtLL` drops/reuses a named point, force-shows the globe
   panel and enters Earth view. Opening the GROUND tab auto-stands at point
   0 when available (incl. via tab restore on load).
+  121-122: rings UNCONDITIONAL while flat-standing (ignore V.moonRing
+  there), sunGrp scale floor 1.0, entering a flat world sets standMode
+  'sun' (face the lamp); `mgBeam` = additive cone from the lamp's physical
+  spot (subsolar x mskyH) to the pool - the visible light shower.
+  PARKED (Blake): independent sun/moon heights (split mskyH in two, each
+  driving its own alt/size/beam) - build after the ground UX settles.
+  QUEUED: ground-mode redesign - world-comparison panels (one per checked
+  world, ONE shared gaze driving all), tab-owned controls, per-panel
+  overhead minimap with a you-are-here view cone. Design agreed in chat.
 - **Sunspots**: REGIONS table between `SUNSPOT-DATA:BEGIN/END` markers +
   `SUNSPOT-CAL` line — **auto-refreshed weekly** by
   `.github/workflows/update-sunspots.yml` running `tools/update-sunspots.mjs`
