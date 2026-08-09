@@ -159,9 +159,18 @@ and 'git pull --rebase' before pushing.
   spot (subsolar x mskyH) to the pool - the visible light shower.
   PARKED (Blake): independent sun/moon heights (split mskyH in two, each
   driving its own alt/size/beam) - build after the ground UX settles.
-  QUEUED: ground-mode redesign - world-comparison panels (one per checked
-  world, ONE shared gaze driving all), tab-owned controls, per-panel
-  overhead minimap with a you-are-here view cone. Design agreed in chat.
+  123: flat sky = SPACE always (no state flip - day is the pool/beam);
+  mgMoon proxy fixes the invisible moon (moonMesh is a CHILD of earthMesh -
+  hiding the globe hid it; the proxy is scene-level, emissive floor, lit by
+  the model sun so FE phases self-report); sunRet deleted; moon ring obeys
+  the toggle again; mgFog haze (sky objects fog:false, fog PARKED at 1e7
+  when unused - never null it, that recompiles shaders); tex.anisotropy 8;
+  stylized relief grain (display, not data); body.groundMode CSS guts panel
+  toolbars to maximize-only while the GROUND tab is active.
+  QUEUED NEXT: world-comparison panels (one per checked world, ONE shared
+  gaze driving all), per-panel overhead minimap with a you-are-here view
+  cone. Design agreed in chat. Blake is unhappy with panel-toolbar chrome
+  in general - keep stripping, never add controls to panel bars.
 - **Sunspots**: REGIONS table between `SUNSPOT-DATA:BEGIN/END` markers +
   `SUNSPOT-CAL` line — **auto-refreshed weekly** by
   `.github/workflows/update-sunspots.yml` running `tools/update-sunspots.mjs`
