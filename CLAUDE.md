@@ -120,6 +120,12 @@ and 'git pull --rebase' before pushing.
 - **Measure drawer**: opens when points exist; minimize button (`probeMin`)
   collapses it, the right-edge MEASURE tab reopens; per-point remove buttons
   in the table rows and sky-card headers.
+- **Model sky** (build 115): per-point strips in the sky cards -
+  `modelSky(def, site, body)` computes alt/az/size the map itself predicts
+  (sun+moon at `MSKY_H` 4828 km, radius 25.75 km - the SAME constants as
+  `feSizeArcmin`; keep them in sync). Filled discs = model, rings = real.
+  FE models only (gleason, bipolar) - projections of the globe get no sky.
+  alt = atan(h/D) > 0 always, so the "never sets" line is model-truth.
 - **Sunspots**: REGIONS table between `SUNSPOT-DATA:BEGIN/END` markers +
   `SUNSPOT-CAL` line — **auto-refreshed weekly** by
   `.github/workflows/update-sunspots.yml` running `tools/update-sunspots.mjs`
