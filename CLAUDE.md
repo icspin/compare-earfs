@@ -80,7 +80,8 @@ and 'git pull --rebase' before pushing.
   (`zoomHold`, applied per frame by the main loop; never a private timer/rAF).
   Telescope handoff when the tracked body is small; fov floor derives from the
   tracked body (stops at ~85% frame fill).
-- **Deck tabs** (build 109): TIME / MAPS / ECLIPSES / POINTS panes
+- **Deck tabs** (build 109, +GROUND in 119): TIME / MAPS / ECLIPSES /
+  POINTS / GROUND panes
   (`setDeckTab`, `deckTab` persisted); the clock transport (Pause, dir,
   speed) is pinned in the tab bar and never hides. Organization only - the
   panes show/hide, every control keeps its id. Mobile deck rows WRAP (the
@@ -140,6 +141,13 @@ and 'git pull --rebase' before pushing.
   `sunRet` twin) work while flat-standing - model bodies are honest specks.
   FE models only (gleason, bipolar) - projections of the globe get no sky.
   alt = atan(h/D) > 0 always: the model sun never sets, visibly.
+  Build 119: standing controls live in the GROUND tab (globe toolbar is
+  clean); flat-world ground uses the SPOTLIGHT POOL (radial gradient at the
+  subsolar map point, p.feLight/p.feSun on the mg source), the sky blends
+  day/night by pool DISTANCE not sun altitude (on a flat model the sun is
+  always up - night IS the pool being far), and the height is a live
+  variable `mskyH` (Ground-tab slider, 1000-12000 km, persisted) that also
+  drives feSizeArcmin and the FE size chart - keep every FE number on it.
 - **Sunspots**: REGIONS table between `SUNSPOT-DATA:BEGIN/END` markers +
   `SUNSPOT-CAL` line — **auto-refreshed weekly** by
   `.github/workflows/update-sunspots.yml` running `tools/update-sunspots.mjs`
