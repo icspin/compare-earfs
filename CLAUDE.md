@@ -60,6 +60,8 @@ and 'git pull --rebase' before pushing.
   Knobs `trkR` (multiplier) / `trkT`,`trkPhi` (walk along/around axis) /
   `trkFov` (telescope) derive the camera fresh per frame - no drift, no
   ratchets. From = the side you watch from, NOT a guaranteed-foreground body.
+  SWIVEL (113): when From IS in the set, drag grabs it (2x2 Jacobian on
+  `V._shot`); otherwise ring-walk. True scale defaults ON (113).
   Earth view: same chips (earth chip hidden - the globe IS the frame);
   checked bodies stay visible OVER the globe (deliberate semantic change from
   the pre-112 day-side Track). Migration: saved `track` strings -> frame sets.
