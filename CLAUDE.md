@@ -167,6 +167,12 @@ and 'git pull --rebase' before pushing.
   when unused - never null it, that recompiles shaders); tex.anisotropy 8;
   stylized relief grain (display, not data); body.groundMode CSS guts panel
   toolbars to maximize-only while the GROUND tab is active.
+  124: INDEPENDENT TAB WORKSPACES - `tabViews` per-tab lineup maps
+  (capture on leave, `TAB_DEFAULTS` seed: ground={globe}, ecl={globe,
+  gleason,mollweide}, others inherit), `#modelChips` (display:contents)
+  DOCKS into the active pane via appendChild and edits THAT tab's lineup;
+  leaving GROUND exits standing; tabViews persisted. Clock/points/overlays/
+  eclipse/heights stay shared - one world, several instruments.
   QUEUED NEXT: world-comparison panels (one per checked world, ONE shared
   gaze driving all), per-panel overhead minimap with a you-are-here view
   cone. Design agreed in chat. Blake is unhappy with panel-toolbar chrome
