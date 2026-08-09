@@ -99,13 +99,16 @@ and 'git pull --rebase' before pushing.
   flat maps (via `projectLine`); umbra disc rides with the clock (`eclNow`).
   `ECL_LUNAR` entries just jump the clock. Picker jumps to GLOBAL greatest;
   other path sites need their local time.
-- **Kaleidoscope** (build 110, PFinky's request): `defs.kaleido` with
-  `kal:1, srcKey:'gleason'` - the disc is COMPOSITED, not projected: the
-  ordinary Gleason scene renders each frame into hidden `kalSrc`, and
-  `drawKaleido` stamps its 0-30 E wedge 12x (6 rotations + 6 mirrors,
-  angles measured from +y like gleason `fwd`). `def.inv/fwd` fold angles
-  the same way, so probing matches the drawing. Not in the measure table
-  (display, not a ruler). Tooltips stay deadpan - no explicit satire, ever.
+- **Kaleidoscope** (110, rebuilt 114 as THE TURNING DRUM): `defs.kaleido`
+  with `kal:1, srcKey:'gleason'` - COMPOSITED, not projected: the Gleason
+  scene renders into hidden `kalSrc` per panel, stamped 12x (6 rotations +
+  6 mirrors) behind FIXED mirrors while the earth turns beneath:
+  `kalSrc.rot = (s.lon - 15)*D2R + p.rot` keeps the noon meridian mid-wedge
+  (empirical sign: shown lon = wedge angle + rot deg; the first cut had it
+  flipped and rode the MIDNIGHT meridian - verify with a +6h timestamp
+  pair, not one shot). Rim-drag = drum twist, not image spin. Probing goes
+  through a custom `p.toLL` that unfolds the live rotation. Not in the
+  measure table. Tooltips stay deadpan - no explicit satire, ever.
 - **Tour** (build 111): `TOUR` steps + `tourStep/startTour/tourEnd`; one
   spotlight div (giant box-shadow) + card. Auto-shows once - localStorage
   key `solterm.tour`, deliberately separate from app state so it SURVIVES
