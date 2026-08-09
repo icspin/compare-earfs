@@ -148,6 +148,11 @@ and 'git pull --rebase' before pushing.
   always up - night IS the pool being far), and the height is a live
   variable `mskyH` (Ground-tab slider, 1000-12000 km, persisted) that also
   drives feSizeArcmin and the FE size chart - keep every FE number on it.
+  Build 120: the picker is `Stand on...` - geo ('My location'), curated
+  `window.STAND_CITIES` (resolved from WORLD_CITIES; unknown names drop),
+  and points; `standAtLL` drops/reuses a named point, force-shows the globe
+  panel and enters Earth view. Opening the GROUND tab auto-stands at point
+  0 when available (incl. via tab restore on load).
 - **Sunspots**: REGIONS table between `SUNSPOT-DATA:BEGIN/END` markers +
   `SUNSPOT-CAL` line — **auto-refreshed weekly** by
   `.github/workflows/update-sunspots.yml` running `tools/update-sunspots.mjs`
