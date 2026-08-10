@@ -206,7 +206,14 @@ and 'git pull --rebase' before pushing.
   60-unit quad with a soft hole sliding per frame; its texture rebuilds
   only when the pool radius changes. NEVER bake moving light into the
   ground texture again - that was three rounds of choppiness.
-  STILL QUEUED: multi-world comparison grounds (ONE shared gaze). PARKED:
+  139-140: flat sky blends by POOL DISTANCE (night->warm dusk->day,
+  stars dim via cached material._b opacity - restore it in every other
+  regime); hover deck is display-toggled IN FLOW (no absolute overlay) -
+  layoutGrid on reveal AND dismiss.
+  NEXT SESSION OPENS WITH: multi-world comparison grounds - world CHIPS
+  (multi-select) in the Ground pane, one clone ground panel per world,
+  ONE shared gaze (copy standAz/Alt/Fov from AV per frame), companions
+  per active world only. Blake asked explicitly; design agreed. PARKED:
   independent sun/moon heights. Blake hates panel-toolbar chrome - keep
   stripping, never add controls to panel bars.
 - **Sunspots**: REGIONS table between `SUNSPOT-DATA:BEGIN/END` markers +
