@@ -193,6 +193,11 @@ and 'git pull --rebase' before pushing.
   when released outside the panel); standMode 'both' = midpoint aim + fov
   breathing (Face buttons cycle free/sun/moon/both); hover deck STAYS once
   revealed - right-click anywhere or Esc dismisses (Blake's call).
+  133-135: deckBtn label is STATEFUL via syncDeckBtn (tucked = Controls on
+  hover, open = Right-click hides); GROUND TEXTURE PERF RULES: no mipmaps
+  on mg tex (regen per update was the spike), cache key at 0.2 deg steps,
+  sheath culled when the camera is inside the beam. If ground choppiness
+  returns, suspect texture upload frequency x size FIRST, stars last.
   STILL QUEUED: multi-world comparison grounds (ONE shared gaze). PARKED:
   independent sun/moon heights. Blake hates panel-toolbar chrome - keep
   stripping, never add controls to panel bars.
