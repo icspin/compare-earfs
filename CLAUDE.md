@@ -65,9 +65,12 @@ and 'git pull --rebase' before pushing.
   ratchets. From = the side you watch from, NOT a guaranteed-foreground body.
   SWIVEL (113): when From IS in the set, drag grabs it (2x2 Jacobian on
   `V._shot`); otherwise ring-walk. True scale defaults ON (113).
-  REFERENCE shots (117): From NOT in the set -> entry starts on the far
-  side (trkT -3, ~18 deg off-axis; 34 deg pushes the reference out of a
-  45 deg frame) so the From body glows in the background beyond the set.
+  Entry side (148, REVERSING 117's "reference" far-side entry): framed
+  shots always ENTER ON THE FROM SIDE (trkT +3 when From is outside the
+  set, 1.5 inside) - "From: Sun" framing Earth shows the LIT face; the
+  117 far-side entry (trkT -3, From body glowing beyond the set) read as
+  backwards and Blake called it. The far-side look is still reachable by
+  dragging trkT through the set.
   Telescope handoff is SOLO-ONLY (117): multi-body sets stop at the trkR
   floor - narrowing fov onto a spread set's empty centroid shows nothing.
   Earth view: same chips (earth chip hidden - the globe IS the frame);
