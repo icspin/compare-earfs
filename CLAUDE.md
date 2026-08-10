@@ -218,13 +218,26 @@ and 'git pull --rebase' before pushing.
   sibling-tab message during the slow sync boot = TDZ, dead app).
   ALSO QUEUED (Blake): professional ground texturing for ALL worlds from
   the ground view, GPU-cheap - pair it with the multi-world cut.
-  DECIDED (Blake, end of session): flat-world ground gets a SKY MODE
-  toggle - DEFAULT "Real sky" (place sun/moon by REAL altAz like globe
-  standing; ground day/night = the real terminator as a small moving
-  overlay quad fed by the 225px nite mask - static-land architecture, NOT
-  baked) vs "Model physics" (current: lamp at mskyH, map bearings, pool,
-  beam). The two modes are the pincer: geometry-honest contradicts the
-  sky; sky-honest needs bendy light. Beam/pool are Model-physics only.
+  146: SKY MODE shipped - `skyModel` (persisted, in share links), DEFAULT
+  Real sky: sun/moon by true topocentric altAz (realSkySun/realSkyMoon
+  next to modelSky), night = `mgNite` overlay quad (18x18 units, y 0.004)
+  textured by the mg src's nite mask via extracted `nightMask()` (0.05
+  deg key), a REAL sunset (sunGrp/mgMoon hidden below alt -0.55 - no
+  globe occludes on a plane), sky/stars follow real sun altitude (blend
+  else-branch now also colors mgFog). Sky button `g_sky` in the Ground
+  pane; height slider is Model-physics-only UI. Model physics = the old
+  lamp/pool/beam story, feMode companion lighting gated on skyModel.
+  THREE GOTCHAS BURNED HERE: (1) canvas textures need
+  `colorSpace = SRGBColorSpace` or dark tints render pale slate (the
+  globe's image textures set it; mg canvas textures never did); (2) WebGL
+  alpha-blends in LINEAR space - the same mask alpha reads ~half as dark
+  as 2D-canvas compositing, so nightMask takes a linA flag and
+  gamma-compensates (1-(1-a)^2.2); (3) mgFog.color.setRGB(bytes/255) fed
+  LINEAR values = horizon glowing lighter than the sky - set fog color
+  via HEX like setClearColor (fixed in both blend branches). Also: in
+  headless verification a PAUSED clock freezes updateScene (dirty-flag
+  rendering) - state probes read stale frames; keep the clock running or
+  interact before reading.
   ALSO QUEUED: Face-both separation readout ("sun-moon: 97deg - view:
   118deg" - wide-fov panorama compression reads as a bug otherwise);
   half-earth pool option; multi-world comparison grounds - world CHIPS
