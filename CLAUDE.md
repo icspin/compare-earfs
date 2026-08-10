@@ -173,10 +173,15 @@ and 'git pull --rebase' before pushing.
   DOCKS into the active pane via appendChild and edits THAT tab's lineup;
   leaving GROUND exits standing; tabViews persisted. Clock/points/overlays/
   eclipse/heights stay shared - one world, several instruments.
-  QUEUED NEXT: world-comparison panels (one per checked world, ONE shared
-  gaze driving all), per-panel overhead minimap with a you-are-here view
-  cone. Design agreed in chat. Blake is unhappy with panel-toolbar chrome
-  in general - keep stripping, never add controls to panel bars.
+  125: GROUND = STREET VIEW - `syncGroundLineup()` forces {globe, companion
+  map} where companion = groundCompanion() (gleason/bipolar/rect by world);
+  drawFlat draws the you-are-here dot + facing cone (standAz + standFov)
+  when deckTab==='ground'; `feMode` extends the spotlight-pool lighting to
+  the companion map in Ground mode (fs = p.feSun || s) so map coverage
+  tracks mskyH; the beam is gradient-textured with a soft sheath.
+  STILL QUEUED: multi-world comparison grounds (ONE shared gaze). PARKED:
+  independent sun/moon heights. Blake hates panel-toolbar chrome - keep
+  stripping, never add controls to panel bars.
 - **Sunspots**: REGIONS table between `SUNSPOT-DATA:BEGIN/END` markers +
   `SUNSPOT-CAL` line — **auto-refreshed weekly** by
   `.github/workflows/update-sunspots.yml` running `tools/update-sunspots.mjs`
