@@ -198,6 +198,14 @@ and 'git pull --rebase' before pushing.
   on mg tex (regen per update was the spike), cache key at 0.2 deg steps,
   sheath culled when the camera is inside the beam. If ground choppiness
   returns, suspect texture upload frequency x size FIRST, stars last.
+  136-138: TIME tab dissolved into the tab bar (compact strip; no
+  tab_time/pane_time); tabs = SKY(id tab_maps)/GROUND/ECLIPSES, pane_pts
+  rides with SKY (special-cased in setDeckTab, not in DECK_TABS); panel
+  masks step at 0.01 deg. GROUND SMOOTHNESS ARCHITECTURE (137): the land
+  texture is STATIC (gk = world+lights) - the moving darkness is mgPool, a
+  60-unit quad with a soft hole sliding per frame; its texture rebuilds
+  only when the pool radius changes. NEVER bake moving light into the
+  ground texture again - that was three rounds of choppiness.
   STILL QUEUED: multi-world comparison grounds (ONE shared gaze). PARKED:
   independent sun/moon heights. Blake hates panel-toolbar chrome - keep
   stripping, never add controls to panel bars.
