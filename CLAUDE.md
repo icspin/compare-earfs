@@ -222,9 +222,11 @@ and 'git pull --rebase' before pushing.
   Real sky: sun/moon by true topocentric altAz (realSkySun/realSkyMoon
   next to modelSky), night = `mgNite` overlay quad (18x18 units, y 0.004)
   textured by the mg src's nite mask via extracted `nightMask()` (0.05
-  deg key), a REAL sunset (sunGrp/mgMoon hidden below alt -0.55 - no
-  globe occludes on a plane), sky/stars follow real sun altitude (blend
-  else-branch now also colors mgFog). Sky button `g_sky` in the Ground
+  deg key), a REAL sunset (sunMesh+sunGlow/mgMoon hidden below alt -0.55
+  - no globe occludes on a plane), sky/stars follow real sun altitude
+  (blend else-branch now also colors mgFog). 147: hide the sun's VISUALS
+  only - sunGrp also contains sunLight, and culling the group killed the
+  night moon's phase (Blake caught it same day). Sky button `g_sky` in the Ground
   pane; height slider is Model-physics-only UI. Model physics = the old
   lamp/pool/beam story, feMode companion lighting gated on skyModel.
   THREE GOTCHAS BURNED HERE: (1) canvas textures need
