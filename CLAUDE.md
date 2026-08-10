@@ -218,7 +218,16 @@ and 'git pull --rebase' before pushing.
   sibling-tab message during the slow sync boot = TDZ, dead app).
   ALSO QUEUED (Blake): professional ground texturing for ALL worlds from
   the ground view, GPU-cheap - pair it with the multi-world cut.
-  NEXT SESSION OPENS WITH: multi-world comparison grounds - world CHIPS
+  DECIDED (Blake, end of session): flat-world ground gets a SKY MODE
+  toggle - DEFAULT "Real sky" (place sun/moon by REAL altAz like globe
+  standing; ground day/night = the real terminator as a small moving
+  overlay quad fed by the 225px nite mask - static-land architecture, NOT
+  baked) vs "Model physics" (current: lamp at mskyH, map bearings, pool,
+  beam). The two modes are the pincer: geometry-honest contradicts the
+  sky; sky-honest needs bendy light. Beam/pool are Model-physics only.
+  ALSO QUEUED: Face-both separation readout ("sun-moon: 97deg - view:
+  118deg" - wide-fov panorama compression reads as a bug otherwise);
+  half-earth pool option; multi-world comparison grounds - world CHIPS
   (multi-select) in the Ground pane, one clone ground panel per world,
   ONE shared gaze (copy standAz/Alt/Fov from AV per frame), companions
   per active world only. Blake asked explicitly; design agreed. PARKED:
