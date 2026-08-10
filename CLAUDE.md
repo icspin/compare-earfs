@@ -179,6 +179,11 @@ and 'git pull --rebase' before pushing.
   when deckTab==='ground'; `feMode` extends the spotlight-pool lighting to
   the companion map in Ground mode (fs = p.feSun || s) so map coverage
   tracks mskyH; the beam is gradient-textured with a soft sheath.
+  126-127: ground finder rings per body (`groundRingSun/Moon`, Ground-pane
+  chips); height slider is LOG (mskyHFromSlider/sliderFromMskyH, 100-60000
+  km, canonical mid = 4828); `unitsImp`+`fmtDist` = km/mi display toggle
+  (g_units in tab bar; math stays km) covering height readout, measure
+  table, legs, FE chart.
   STILL QUEUED: multi-world comparison grounds (ONE shared gaze). PARKED:
   independent sun/moon heights. Blake hates panel-toolbar chrome - keep
   stripping, never add controls to panel bars.
