@@ -2653,6 +2653,7 @@ function exitStand(V, reframe = true){
   const was = V.standAt >= 0;
   V.standAt = -1;
   syncControlsEnabled();
+  syncGroundClone();
   V.standGrp.clear();
   if (was){
     V.camera.up.set(0,1,0);
@@ -2978,12 +2979,38 @@ function groundCompanion(){
   const w = AV().standWorld;
   return w === 'gleason' ? 'gleason' : w === 'bipolar' ? 'bipolar' : null;
 }
+let groundClone = null;
+function syncGroundClone(){
+  /* World: Globe pairs the ground view with a real GLOBE overhead - a
+     clone panel whose camera starts over your stand point and orbits
+     freely. Flat worlds use their own map companion instead. */
+  const V0 = AV();
+  const want = deckTab === 'ground' && V0.standAt >= 0 &&
+    (!V0.standWorld || V0.standWorld === 'globe');
+  if (want && !groundClone){
+    addGlobeClone();
+    groundClone = gclones[gclones.length - 1];
+    const p = points[V0.standAt];
+    const gv = groundClone.view;
+    gv.viewMode = 'earth';
+    gv.frame = { sun:false, earth:false, moon:false };
+    gv.standAt = -1;
+    gv.controls.target.set(0,0,0);
+    if (p) gv.camera.position.copy(latLonV3(p.lat, p.lon, 6.5));
+    gv.camera.up.set(0,1,0);
+    setActiveView(0);
+  } else if (!want && groundClone){
+    if (gclones.includes(groundClone)) removeGlobeClone(groundClone);
+    groundClone = null;
+  }
+}
 function syncGroundLineup(){
   if (deckTab !== 'ground') return;
   const comp = groundCompanion();
   for (const k of ['globe', ...FLATKEYS]) $('v_'+k).checked = (k === 'globe' || k === comp);
   maximized = null;
   applyVis();
+  syncGroundClone();
 }
 $('g_world').onclick = ()=>{
   const V = AV(), order = ['globe','gleason','bipolar'];
@@ -3256,6 +3283,7 @@ function setDeckTab(t){
     /* leaving GROUND leaves the ground - each tab is its own app */
     views.forEach(v=>{ if (v.standAt >= 0) exitStand(v, v === AV()); });
   }
+  syncGroundClone();
   placeAutoDeck(); layoutGrid(); requestRender();
 }
 for (const k of DECK_TABS) $('tab_'+k).onclick = ()=>setDeckTab(k);
@@ -4654,7 +4682,7 @@ function collectState(){
     points: points.map(p=>({ lat:p.lat, lon:p.lon, n:p.n })),
     view: { m: V.viewMode, anchor: V.anchor, frame: frameList(V), scale: V.trueScale, ring: V.moonRing !== false,
       stand: V.standAt, sw: V.standWorld, sm: V.standMode },
-    clones: gclones.map(c=>({ m: c.view.viewMode, anchor: c.view.anchor,
+    clones: gclones.filter(c=>c !== groundClone).map(c=>({ m: c.view.viewMode, anchor: c.view.anchor,
       frame: frameList(c.view), scale: c.view.trueScale, ring: c.view.moonRing !== false }))
   };
 }
@@ -4900,6 +4928,7 @@ if (!tourFirst) setTimeout(startTour, 800);
     /* SOLTERM-LOG:BEGIN - one line per build, newest first; every build
        bump adds its line at the top (same commit as the footer bump) */
     var LOG = [
+      [144, 'World: Globe pairs the ground view with a real orbitable globe, focused on where you stand'],
       [143, 'standing survives refresh; Metric/Imperial buttons by Share; globe world stands alone; a sibling-tab boot crash fixed'],
       [142, 'height slider: default-snap button, tick at 3,000 mi, range down to hundreds of feet (m/ft readouts)'],
       [141, 'Face both zooms: the wheel rides on top of the auto-fit'],
