@@ -210,6 +210,14 @@ and 'git pull --rebase' before pushing.
   stars dim via cached material._b opacity - restore it in every other
   regime); hover deck is display-toggled IN FLOW (no absolute overlay) -
   layoutGrid on reveal AND dismiss.
+  141-143: bothZoom factor rides the both-mode auto-fit; height slider
+  0.1-60000 km log w/ default snap + tick; units = header Metric/Imperial
+  buttons (setUnits/syncUnitsUI - NO module-scope syncUnitsUI call, it
+  TDZ-aborts boot); standing persists in view.{stand,sw,sm} restored in
+  applyView AFTER points; bcast guarded by bootDone (early interval or
+  sibling-tab message during the slow sync boot = TDZ, dead app).
+  ALSO QUEUED (Blake): professional ground texturing for ALL worlds from
+  the ground view, GPU-cheap - pair it with the multi-world cut.
   NEXT SESSION OPENS WITH: multi-world comparison grounds - world CHIPS
   (multi-select) in the Ground pane, one clone ground panel per world,
   ONE shared gaze (copy standAz/Alt/Fov from AV per frame), companions
