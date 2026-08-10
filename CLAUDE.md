@@ -184,6 +184,15 @@ and 'git pull --rebase' before pushing.
   km, canonical mid = 4828); `unitsImp`+`fmtDist` = km/mi display toggle
   (g_units in tab bar; math stays km) covering height readout, measure
   table, legs, FE chart.
+  128-132: ground render CACHED behind `src._gk` (subsolar quantized +
+  mskyH + lights + world - the every-frame 900px upload WAS the choppiness);
+  mg sources render at 2x (cv PW*2, z:2 - vector, crisp free) + two-scale
+  grain; SHARE = collectState() base64url in #s= (restoreState prefers it,
+  then drops the hash; file:// needs the location.hash fallback);
+  look-drag release listeners are on WINDOW (canvas-only ones went sticky
+  when released outside the panel); standMode 'both' = midpoint aim + fov
+  breathing (Face buttons cycle free/sun/moon/both); hover deck STAYS once
+  revealed - right-click anywhere or Esc dismisses (Blake's call).
   STILL QUEUED: multi-world comparison grounds (ONE shared gaze). PARKED:
   independent sun/moon heights. Blake hates panel-toolbar chrome - keep
   stripping, never add controls to panel bars.
